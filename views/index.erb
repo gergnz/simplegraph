@@ -1,0 +1,21 @@
+<h1>New Value</h1>
+<form action="/newvalue" method="post">
+  <label for="graph_value">Value:</label><br />
+  <input id="graph_value" name="graph[value]" type="text" value="<%= @graph.value %>" />
+  <br />
+
+  <label for="graph_date">Date:</label><br />
+  <input id="graph_date" name="graph[date]" value="<%= Date.today.strftime('%Y%m%d') %>"><%= @graph.date %></input>
+  <br />
+
+  <input type="submit" value="Create Value" />
+</form>
+
+<a href="/graphit">Show me the graph!</a><br>
+
+<h1>All the raw data</h1>
+<table>
+<% @data.each do |data| %>
+<tr><td><%= data.date.to_s[6,2] %>/<%= data.date.to_s[4, 2] %>/<%= data.date.to_s[0, 4] %></td><td><%= data.value %></td></tr>
+<% end %>
+</table>

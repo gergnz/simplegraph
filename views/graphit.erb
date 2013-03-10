@@ -1,0 +1,46 @@
+<script>
+$(document).ready(function() { 
+    var chart1 = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            type: 'line'
+        },
+        title: {
+            text: 'Weight loss'
+        },
+        xAxis: {
+            name: 'Date',
+            categories: [<% @data.each do |data| %>
+            '<%= data.date.to_s[6,2] %>/<%= data.date.to_s[4, 2] %>/<%= data.date.to_s[0, 4] %>',
+            <%end%>],
+            labels: {
+              rotation: 270,
+              y: 40,
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'kg'
+            }
+        },
+        series: [{
+            name: 'Karen',
+            data: [<% @data.each do |data| %>
+            <%= data.value %>,
+            <%end%>]
+        },
+        {
+            name: 'Weekly',
+            data: [<% @data.each do |data| %>
+            <%= data.value %>,
+            <%end%>]
+        }]
+    });
+});
+</script>
+
+<div id="container" style="width:100%; height:400px;"> 
+
+</div>
+
+<a href="/">Home</a>
